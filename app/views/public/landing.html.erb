@@ -122,27 +122,23 @@
   <div class="linktree-container">
     <div class="profile-section">
       <div class="profile-image">
-        🎸
+        <%=image_tag("lwc-flutters.jpeg", size: "75x75")%>
       </div>
       <h1 class="profile-title">Lousy With Coyotes</h1>
       <p class="profile-subtitle">Rock • Alternative • Live Music</p>
     </div>
     
     <div class="links-container">
-      <%= link_to "#", class: "link-button" do %>
+      <%= link_to "https://music.apple.com/us/artist/lousy-with-coyotes/1692258871", class: "link-button" do %>
         <span class="link-icon">🎵</span>
         Listen to Our Music
       <% end %>
       
-      <%= link_to "#", class: "link-button" do %>
-        <span class="link-icon">📅</span>
-        Upcoming Shows
+      <%= link_to "https://www.instagram.com/lousywithcoyotes/", class: "link-button" do %>
+        <span class="link-icon">📷</span>
+        Instagram
       <% end %>
       
-      <%= link_to "#", class: "link-button" do %>
-        <span class="link-icon">📧</span>
-        Contact & Booking
-      <% end %>
     </div>
   </div>
 </body>
