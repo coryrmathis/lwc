@@ -1,0 +1,12 @@
+{
+  "name": "lwc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:coryrmathis/lwc.git",
+  "author": "Cory Mathis <coryrmathis@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.7"
+  }
+}
