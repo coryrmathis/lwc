@@ -1,0 +1,80 @@
+<div class="container py-4">
+  <% if notice.present? %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  <% end %>
+
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <div>
+      <h1>
+        <%= @song.title %>
+        <% if @song.is_cover? %>
+          <span class="badge bg-secondary fs-6 align-middle">Cover</span>
+        <% end %>
+      </h1>
+      <% if @song.is_cover? && @song.original_artist.present? %>
+        <p class="text-muted">Originally by <%= @song.original_artist %></p>
+      <% end %>
+    </div>
+    <span class="badge bg-<%= status_badge_class(@song.status) %> fs-6"><%= @song.status.humanize %></span>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <% if @song.key.present? %>
+      <div class="col-auto">
+        <div class="card text-center px-3 py-2">
+          <small class="text-muted">Key</small>
+          <strong><%= @song.key %></strong>
+        </div>
+      </div>
+    <% end %>
+    <% if @song.bpm.present? %>
+      <div class="col-auto">
+        <div class="card text-center px-3 py-2">
+          <small class="text-muted">BPM</small>
+          <strong><%= @song.bpm %></strong>
+        </div>
+      </div>
+    <% end %>
+    <% if @song.length_display.present? %>
+      <div class="col-auto">
+        <div class="card text-center px-3 py-2">
+          <small class="text-muted">Length</small>
+          <strong><%= @song.length_display %></strong>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @song.lyrics.present? %>
+    <div class="mb-4">
+      <h5>Lyrics</h5>
+      <pre class="bg-light p-3 rounded"><%= @song.lyrics %></pre>
+    </div>
+  <% end %>
+
+  <% if @song.notes.present? %>
+    <div class="mb-4">
+      <h5>Notes</h5>
+      <p class="bg-light p-3 rounded"><%= @song.notes %></p>
+    </div>
+  <% end %>
+
+  <% if @song.chord_chart.present? %>
+    <div class="mb-4">
+      <h5>Chord Chart</h5>
+      <div data-controller="chord-chart"
+           data-chord-chart-source-value="<%= @song.chord_chart %>">
+        <pre class="bg-light p-3 rounded font-monospace small"><%= @song.chord_chart %></pre>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="d-flex gap-2">
+    <%= link_to "Edit", edit_song_path(@song), class: "btn btn-outline-secondary" %>
+    <%= button_to "Delete", @song, method: :delete, class: "btn btn-outline-danger", form: { data: { turbo_confirm: "Delete #{@song.title}?" } } %>
+    <%= link_to "Back to Songs", songs_path, class: "btn btn-link" %>
+  </div>
+</div>
