@@ -1,0 +1,74 @@
+<div class="container py-4">
+  <% if notice.present? %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  <% end %>
+
+  <h1 class="mb-4"><%= @venue.name %></h1>
+
+  <div class="row g-3 mb-4">
+    <% if @venue.location_display.present? %>
+      <div class="col-auto">
+        <div class="card text-center px-3 py-2">
+          <small class="text-muted">Location</small>
+          <strong><%= @venue.location_display %></strong>
+        </div>
+      </div>
+    <% end %>
+    <% if @venue.website.present? %>
+      <div class="col-auto">
+        <div class="card text-center px-3 py-2">
+          <small class="text-muted">Website</small>
+          <strong><%= link_to @venue.website, @venue.website, target: "_blank", rel: "noopener" %></strong>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @venue.address.present? || @venue.contact_name.present? || @venue.contact_email.present? || @venue.phone.present? || @venue.last_contacted_at.present? || @venue.next_follow_up_at.present? %>
+    <div class="mb-4">
+      <h5>Contact</h5>
+      <dl class="row mb-0">
+        <% if @venue.address.present? %>
+          <dt class="col-sm-3">Address</dt>
+          <dd class="col-sm-9"><%= @venue.address %></dd>
+        <% end %>
+        <% if @venue.contact_name.present? %>
+          <dt class="col-sm-3">Contact</dt>
+          <dd class="col-sm-9"><%= @venue.contact_name %></dd>
+        <% end %>
+        <% if @venue.contact_email.present? %>
+          <dt class="col-sm-3">Email</dt>
+          <dd class="col-sm-9"><%= mail_to @venue.contact_email %></dd>
+        <% end %>
+        <% if @venue.phone.present? %>
+          <dt class="col-sm-3">Phone</dt>
+          <dd class="col-sm-9"><%= @venue.phone %></dd>
+        <% end %>
+        <% if @venue.last_contacted_at.present? %>
+          <dt class="col-sm-3">Last Contacted</dt>
+          <dd class="col-sm-9"><%= @venue.last_contacted_at.strftime("%B %-d, %Y") %></dd>
+        <% end %>
+        <% if @venue.next_follow_up_at.present? %>
+          <dt class="col-sm-3">Next Follow-up</dt>
+          <dd class="col-sm-9"><%= @venue.next_follow_up_at.strftime("%B %-d, %Y") %></dd>
+        <% end %>
+      </dl>
+    </div>
+  <% end %>
+
+  <% if @venue.notes.present? %>
+    <div class="mb-4">
+      <h5>Notes</h5>
+      <p class="bg-light p-3 rounded"><%= @venue.notes %></p>
+    </div>
+  <% end %>
+
+  <div class="d-flex gap-2">
+    <%= link_to "Edit", edit_venue_path(@venue), class: "btn btn-outline-secondary" %>
+    <%= button_to "Delete", @venue, method: :delete, class: "btn btn-outline-danger", form: { data: { turbo_confirm: "Delete #{@venue.name}?" } } %>
+    <%= link_to "Back to Venues", venues_path, class: "btn btn-link" %>
+  </div>
+</div>
