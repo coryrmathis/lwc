@@ -9,9 +9,17 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  resources :venues
+
+  resources :songs do
+    member do
+      post :generate_chart
+    end
+  end
+
   # Public routes (no authentication required)
   get "/linktree", to: "public#landing", as: :public_landing
   
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "home#landing"
 end

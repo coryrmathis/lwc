@@ -31,8 +31,15 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Anthropic Claude API
+gem "anthropic"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+
+group :development do
+  gem "dotenv-rails"
+end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -47,6 +54,7 @@ group :development, :test do
   # RSpec testing framework [https://github.com/rspec/rspec-rails]
   gem "rspec-rails"
   gem "factory_bot_rails"
+  gem "byebug"
 end
 
 group :development do
